@@ -227,9 +227,10 @@ The images and videos were generated using `P2.ipynb`
 ## Shortcomings
 
 - Can detect only two lanes.
-- Gradient threshold picks up edges that may not be lanes. Applying AND operator with a colour threshold will fix this issue but also introduces loss of information.
+- Pipeline executes at ~7FPS which is too slow for a real-time use-case.
 - Static bird's eye warp points fail for hard turns/hairpins (harder_challenge_video)
 - In case of any failure in lane detection, the pipeline returns the previous lane instead of performing a full Histogram Search again.
+- Gradient threshold picks up edges that may not be lanes. Applying AND operator with a colour threshold will fix this issue but also introduces loss of information.
 
 ## Further improvements
 
