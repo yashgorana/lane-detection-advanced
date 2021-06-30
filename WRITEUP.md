@@ -206,7 +206,9 @@ The function `LaneDetection.detect_and_render()` is responsible for running the 
 
 ## Pipeline output
 
-Based on the draw parameters, the final output contains both segmented lane line & averaged/extrapolated lane lines
+The final output contains the filled lane with radius of curvature & offset metrics. 
+
+The images and videos were generated using `P2.ipynb`
 
 ### Image results
 
@@ -232,7 +234,7 @@ Based on the draw parameters, the final output contains both segmented lane line
 ## Further improvements
 
 - Improve on the averaging weights. Currently, sudden changes in the lane may not be reflected immediately in the rendered output.
-- Introduce Lane sanity checks- check if width or lane line coefficients didn't change abruptly.
+- Introduce Lane sanity checks- if width or lane line coefficients didn't change abruptly.
 - Dynamically update the warp points based on the previous lane detection result. This method requires a lane sanity check, as incorrect lanes can result in incorrect warp points.
 - Reset to Histogram Search in case of lane sanity failure
 

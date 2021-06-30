@@ -26,14 +26,6 @@ For bare-bones Python 3, install the required dependencies by running
 
     $ pip install -r requirements.txt
 
-### Setup
-
-If using Anaconda, follow [this guide](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/doc/configure_via_anaconda.md)
-
-For bare-bones Python 3, install the required dependencies by running
-
-    $ pip install -r requirements.txt
-
 ## Usage
 
 ### Jupyter Notebook
