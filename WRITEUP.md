@@ -70,7 +70,7 @@ The class `src.camera.Camera` simplifies the process calibration, loading & savi
 
 The function `Camera.undistort(image, calib_data)` is used to undistort the image.
 
-![](./assets/undistorted.PNG)
+![](./assets/undistorted.png)
 
 #### 2. Gradient + Color Threshold
 
@@ -88,9 +88,9 @@ As the name suggests, function `Threshold.combined_threshold()` will perform a l
         return grad & (hls | hsv | lab)
 ```
 
-![](./assets/individual-thresholds.PNG)
+![](./assets/individual-thresholds.png)
 
-Here, the blue colour represents Sobel gradient thresholds and the green represents the HLS/HSV/LAB combined colour thresholds. If we notice carefully, the lane lines have CYAN (combination of both) which we can filter out using the AND operation.![](./assets/combined-thresholds.PNG)
+Here, the blue colour represents Sobel gradient thresholds and the green represents the HLS/HSV/LAB combined colour thresholds. If we notice carefully, the lane lines have CYAN (combination of both) which we can filter out using the AND operation.![](./assets/combined-thresholds.png)
 
 #### 3. Bird's Eye View
 
@@ -100,7 +100,7 @@ The transformation uses hand-picked source and destination warp points. These va
 
 The function`Warp.warp_image()` is invoked with binary image and the warp points to generate a perspective transform matrix (M) and an inverse perspective transform matrix (`M_inv`) 
 
-![](./assets/birds-eye.PNG)
+![](./assets/birds-eye.png)
 
 The result is a binary image of bird's eye view of the road  
 
@@ -129,7 +129,7 @@ The function `FindLanes.histogram_search()` performs this search by taking in a 
 
 Where type is the type of search performed. lane_pixels are all the pixel locations. sliding_windows has locations of all the sliding windows, and finally, the histogram used for the search.
 
-![](./assets/histogram-search.PNG)
+![](./assets/histogram-search.png)
 
 **Focused search**
 
@@ -148,7 +148,7 @@ The function `FindLanes.focused_search()` runs this search &  returns the follow
 
 Similar to histogram search, `type` is the type of search and `lane_pixels` is all the lane pixel locations. `region_points` includes the pixels of the region of search and `search_width` is the thickness of the same region.
 
-![](./assets/focused-search.PNG)
+![](./assets/focused-search.png)
 
 **Averaging the detections**
 
@@ -188,13 +188,13 @@ You can think of this object as the current state of the lane detection pipeline
 
 #### 5. Draw & Fill lane in bird's eye view
 
-![](./assets/birds-eye-lane.PNG)
+![](./assets/birds-eye-lane.png)
 
 #### 6. Unwarp
 
 This stage uses the inverse perspective transform matrix (`M_inv`) generated in Stage 2 to unwarp our filled lane
 
-![](./assets/unwarped-lane.PNG)
+![](./assets/unwarped-lane.png)
 
 #### 7. Merge & draw additional data points
 
