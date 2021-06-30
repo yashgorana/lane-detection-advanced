@@ -8,11 +8,6 @@ from .threshold import Threshold
 from .warp import Warp
 
 
-def gaussian_blur(img, kernel_size):
-    """Applies a Gaussian Noise kernel"""
-    return cv2.GaussianBlur(img, (kernel_size, kernel_size), 0)
-
-
 class LaneDetection:
     def __init__(self):
         self._state = {}
@@ -163,7 +158,9 @@ class LaneDetection:
 
         (left_lane_pts, right_lane_pts) = lane_detection_result["fit_points"]
         (left_x, left_y, right_x, right_y) = lane_detection_result["pixels"]
-        margin_arr = np.array([lane_detection_result["search_result"]["margin"], 0])
+        margin_arr = np.array(
+            [lane_detection_result["search_result"]["search_width"], 0]
+        )
 
         left_lane_region = np.hstack(
             ([left_lane_pts - margin_arr], [np.flipud(left_lane_pts + margin_arr)])

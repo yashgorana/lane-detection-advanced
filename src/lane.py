@@ -15,19 +15,7 @@ class LaneLine:
 
 
 class FindLanes:
-    LANE_HISTORY_WEIGHTS = (
-        1,
-        0.75,
-        1 / 4,
-        1 / 4,
-        1 / 4,
-        1 / 5,
-        1 / 5,
-        1 / 8,
-        1 / 8,
-        1 / 10,
-        1 / 10,
-    )
+    LANE_HISTORY_WEIGHTS = (1, 0.75, 0.25, 0.25, 0.25, 0.2, 0.2, 0.125, 0.125, 0.1, 0.1)
 
     @staticmethod
     def fit_poly(img_shape, leftx, lefty, rightx, righty):
@@ -56,7 +44,7 @@ class FindLanes:
         return (y >= y1) & (y < y2) & (x >= x1) & (x < x2)
 
     @staticmethod
-    def focused_search(img_binary, previous_lane, search_margin=20, **kwargs):
+    def focused_search(img_binary, previous_lane, search_width=20, **kwargs):
         left_fit, right_fit = previous_lane
 
         # Grab activated pixels
@@ -64,7 +52,7 @@ class FindLanes:
         nonzeroy = np.array(nonzero[0])
         nonzerox = np.array(nonzero[1])
 
-        margin_arr = np.array([0, 0, search_margin])
+        margin_arr = np.array([0, 0, search_width])
         left_search_region = np.polyval(left_fit - margin_arr, nonzeroy), np.polyval(
             left_fit + margin_arr, nonzeroy
         )
@@ -89,7 +77,7 @@ class FindLanes:
             "type": "focused_search",
             "lane_pixels": (left_x, left_y, right_x, right_y),
             "region_points": (left_search_region, right_search_region),
-            "margin": search_margin,
+            "search_width": search_width,
         }
 
     @staticmethod
